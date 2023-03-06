@@ -1,0 +1,104 @@
+        -:    0:Source:/home/simi/Dev/C++/SimiLinearAlgebraLib/main.cpp
+        -:    0:Graph:/home/simi/Dev/C++/SimiLinearAlgebraLib/cmake-build-debug-coverage/CMakeFiles/LinearAlgebraLib.dir/main.cpp.gcno
+        -:    0:Data:/home/simi/Dev/C++/SimiLinearAlgebraLib/cmake-build-debug-coverage/CMakeFiles/LinearAlgebraLib.dir/main.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include <iostream>
+        -:    2:
+        -:    3:#include "Matrix.cpp"
+        -:    4:
+function main called 1 returned 100% blocks executed 43%
+        1:    5:int main() {
+        -:    6:    SimiLAL::Matrix<double> B({
+        -:    7:                                      {5, 6,  7},
+        -:    8:                                      {7, 8,  9},
+        -:    9:                                      {9, 11, 11}
+        4:   10:                              });
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        1:   10-block  0
+call    3 returned 1
+branch  4 taken 1 (fallthrough)
+branch  5 taken 0 (throw)
+        1:   10-block  1
+call    6 returned 1
+call    7 returned 1
+        4:   10-block  2
+branch  8 taken 3 (fallthrough)
+branch  9 taken 1
+        3:   10-block  3
+call   10 returned 3
+    $$$$$:   10-block  4
+call   11 never executed
+    $$$$$:   10-block  5
+call   12 never executed
+    $$$$$:   10-block  6
+    $$$$$:   10-block  7
+    $$$$$:   10-block  8
+branch 13 never executed
+branch 14 never executed
+    $$$$$:   10-block  9
+call   15 never executed
+    $$$$$:   10-block 10
+    $$$$$:   10-block 11
+        -:   11:
+        1:   12:    SimiLAL::Matrix<double> Bt = B.transpose();
+        1:   13:    Bt.print();
+        1:   13-block  0
+call    0 returned 1
+branch  1 taken 1 (fallthrough)
+branch  2 taken 0 (throw)
+        3:   14:}
+        1:   14-block  0
+call    0 returned 1
+call    1 returned 1
+branch  2 taken 1 (fallthrough)
+branch  3 taken 0 (throw)
+        1:   14-block  1
+call    4 returned 1
+call    5 returned 1
+branch  6 taken 1 (fallthrough)
+branch  7 taken 0 (throw)
+        1:   14-block  2
+call    8 returned 1
+call    9 returned 1
+branch 10 taken 1 (fallthrough)
+branch 11 taken 0 (throw)
+        1:   14-block  3
+call   12 returned 1
+        1:   14-block  4
+call   13 returned 1
+call   14 returned 1
+call   15 returned 1
+call   16 returned 1
+branch 17 taken 1 (fallthrough)
+branch 18 taken 0 (throw)
+        1:   14-block  5
+call   19 returned 1
+call   20 returned 1
+        1:   14-block  6
+    $$$$$:   14-block  7
+call   21 never executed
+    $$$$$:   14-block  8
+    $$$$$:   14-block  9
+    $$$$$:   14-block 10
+call   22 never executed
+    $$$$$:   14-block 11
+    $$$$$:   14-block 12
+    $$$$$:   14-block 13
+call   23 never executed
+    $$$$$:   14-block 14
+    $$$$$:   14-block 15
+    $$$$$:   14-block 16
+branch 24 never executed
+branch 25 never executed
+    $$$$$:   14-block 17
+    $$$$$:   14-block 18
+branch 26 never executed
+branch 27 never executed
+    $$$$$:   14-block 19
+call   28 never executed
+    $$$$$:   14-block 20
+call   29 never executed
+    $$$$$:   14-block 21
+call   30 never executed

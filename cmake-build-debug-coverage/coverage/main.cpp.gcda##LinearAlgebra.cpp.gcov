@@ -1,0 +1,91 @@
+        -:    0:Source:/home/simi/Dev/C++/SimiLinearAlgebraLib/LinearAlgebra.cpp
+        -:    0:Graph:/home/simi/Dev/C++/SimiLinearAlgebraLib/cmake-build-debug-coverage/CMakeFiles/LinearAlgebraLib.dir/main.cpp.gcno
+        -:    0:Data:/home/simi/Dev/C++/SimiLinearAlgebraLib/cmake-build-debug-coverage/CMakeFiles/LinearAlgebraLib.dir/main.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#include "Matrix.h"
+        -:    2:
+        -:    3:namespace SimiLAL {
+        -:    4:    template <typename T>
+        -:    5:    void Matrix<T>::add(const Matrix& other) { parseAllData(other, [](const T& left, const T& right){ return left + right; }); }
+        -:    6:
+        -:    7:    template <typename T>
+        -:    8:    void Matrix<T>::sub(const Matrix& other) { parseAllData(other, [](const T& left, const T& right){ return left + right; }); }
+        -:    9:
+        -:   10:    template <typename T>
+        -:   11:    void Matrix<T>::mult(const Matrix& other) { parseAllData(other, [](const T& left, const T& right){ return left * right; }); }
+        -:   12:
+        -:   13:    template <typename T>
+        -:   14:    void Matrix<T>::div(const Matrix& other) { parseAllData(other, [](const T& left, const T& right){ return left / right; }); }
+        -:   15:
+        -:   16:    template <typename T>
+        -:   17:    bool Matrix<T>::isSquare() { return rowCount == colCount; }
+        -:   18:
+        -:   19:    template <typename T>
+function _ZN7SimiLAL6MatrixIdE9transposeEv called 1 returned 100% blocks executed 100%
+        1:   20:    Matrix<T> Matrix<T>::transpose() {
+        1:   21:        Matrix<T> temp(rowCount, colCount);
+        1:   21-block  0
+call    0 returned 1
+        -:   22:
+        4:   23:        for (int i = 0; i < rowCount; i++)
+        3:   23-block  0
+        4:   23-block  1
+branch  0 taken 3
+branch  1 taken 1 (fallthrough)
+       12:   24:            for (int j = 0; j < colCount; j++)
+        3:   24-block  0
+       12:   24-block  1
+branch  0 taken 9
+branch  1 taken 3 (fallthrough)
+        9:   25:                temp.data[j][i] = data[i][j];
+        9:   25-block  0
+call    0 returned 9
+call    1 returned 9
+call    2 returned 9
+call    3 returned 9
+        -:   26:
+        1:   27:        return temp;
+        1:   27-block  0
+        -:   28:    }
+        -:   29:
+        -:   30:    template <typename T>
+        -:   31:    Matrix<T> Matrix<T>::submatrix(size_t iPos, size_t jPos) {
+        -:   32:        Matrix<T> temp(rowCount - 1);
+        -:   33:
+        -:   34:        for (size_t i = 0; i < rowCount; i++)
+        -:   35:        {
+        -:   36:            if (i == iPos) continue;
+        -:   37:
+        -:   38:            for (size_t j = 0; j < colCount; j++) {
+        -:   39:                if (j == jPos) continue;
+        -:   40:
+        -:   41:                temp.insert(data[i][j]);
+        -:   42:            }
+        -:   43:        }
+        -:   44:
+        -:   45:        return temp;
+        -:   46:    }
+        -:   47:
+        -:   48:    template <typename T>
+        -:   49:    double Matrix<T>::determinantLeibnitz() { return determinantLeibnitzHelper(*this); }
+        -:   50:
+        -:   51:    template <typename T>
+        -:   52:    double Matrix<T>::determinantLeibnitzHelper(Matrix& self) {
+        -:   53:        /*
+        -:   54:        if (!this->isSquare())
+        -:   55:            throw std::invalid_argument("Matrix is not square");
+        -:   56:        */
+        -:   57:
+        -:   58:        if (self.rowCount == 2)
+        -:   59:            return (self.data[0][0] * self.data[1][1]) - (self.data[0][1] * self.data[1][0]);
+        -:   60:
+        -:   61:        double determinant = 0;
+        -:   62:        for (size_t jUpperRow = 0; jUpperRow < colCount; jUpperRow++) {
+        -:   63:            Matrix<T> subMatrix = self.submatrix(0, jUpperRow);
+        -:   64:
+        -:   65:            determinant += self[0][jUpperRow] * pow(-1, jUpperRow) * subMatrix.determinantLeibnitzHelper(subMatrix);
+        -:   66:        }
+        -:   67:
+        -:   68:        return determinant;
+        -:   69:    }
+        -:   70:}

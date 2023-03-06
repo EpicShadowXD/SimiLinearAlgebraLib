@@ -1,0 +1,109 @@
+        -:    0:Source:/home/simi/Dev/C++/SimiLinearAlgebraLib/Matrix.h
+        -:    0:Graph:/home/simi/Dev/C++/SimiLinearAlgebraLib/cmake-build-debug-coverage/CMakeFiles/LinearAlgebraLib.dir/main.cpp.gcno
+        -:    0:Data:/home/simi/Dev/C++/SimiLinearAlgebraLib/cmake-build-debug-coverage/CMakeFiles/LinearAlgebraLib.dir/main.cpp.gcda
+        -:    0:Runs:1
+        -:    1:#pragma once
+        -:    2:
+        -:    3:#include <iostream>
+        -:    4:#include <vector>
+        -:    5:#include <algorithm>
+        -:    6:#include <functional>
+        -:    7:#include <memory>
+        -:    8:#include <cmath>
+        -:    9:
+        -:   10:// SimiLinearAlgebraLibrary
+        -:   11:namespace SimiLAL {
+        -:   12:
+        -:   13:    template<typename T>
+        -:   14:    class Matrix {
+        -:   15:    public:
+        -:   16:        Matrix() : Matrix(0)
+        -:   17:        {}
+        -:   18:        Matrix(size_t size) : Matrix(size, size)
+        -:   19:        {}
+function _ZN7SimiLAL6MatrixIdEC2Emm called 1 returned 100% blocks executed 56%
+        1:   20:        Matrix(size_t rowCount, size_t colCount) : rowCount(rowCount),
+        1:   21:                                                colCount(colCount),
+        1:   22:                                                data(rowCount, std::vector<T>(colCount))
+        1:   22-block  0
+call    0 returned 1
+call    1 returned 1
+call    2 returned 1
+branch  3 taken 1 (fallthrough)
+branch  4 taken 0 (throw)
+        1:   22-block  1
+call    5 returned 1
+branch  6 taken 1 (fallthrough)
+branch  7 taken 0 (throw)
+        1:   22-block  2
+call    8 returned 1
+call    9 returned 1
+call   10 returned 1
+call   11 returned 1
+    $$$$$:   22-block  3
+call   12 never executed
+    $$$$$:   22-block  4
+call   13 never executed
+    $$$$$:   22-block  5
+    $$$$$:   22-block  6
+    $$$$$:   22-block  7
+call   14 never executed
+        1:   23:        {}
+function _ZN7SimiLAL6MatrixIdEC2ERKSt6vectorIS2_IdSaIdEESaIS4_EE called 1 returned 100% blocks executed 100%
+        2:   24:        Matrix(const std::vector<std::vector<T>> &input) : data(input),
+        1:   25:                                                           rowCount(input.size()),
+        1:   25-block  0
+call    0 returned 1
+        1:   26:                                                           colCount(input[0].size())
+call    0 returned 1
+call    1 returned 1
+call    2 returned 1
+call    3 returned 1
+        1:   27:        {}
+        -:   28:
+        -:   29:        // Linear Algebra
+        -:   30:        void add(const Matrix& other);
+        -:   31:        void sub(const Matrix& other);
+        -:   32:        void mult(const Matrix& other);
+        -:   33:        void div(const Matrix& other);
+        -:   34:
+        -:   35:        bool isSquare();
+        -:   36:
+        -:   37:        Matrix transpose();
+        -:   38:        Matrix submatrix(size_t iPos, size_t jPos);
+        -:   39:
+        -:   40:        double determinantLeibnitz();
+        -:   41:
+        -:   42:        // Iterators
+        -:   43:        using RowIterator = std::vector<T>::iterator;
+        -:   44:        using ColIterator = std::vector<std::reference_wrapper<T>>::iterator;
+        -:   45:
+        -:   46:        RowIterator rowBegin(size_t index);
+        -:   47:        RowIterator rowEnd(size_t index);
+        -:   48:
+        -:   49:        ColIterator colBegin(size_t index);
+        -:   50:        ColIterator colEnd(size_t index);
+        -:   51:
+        -:   52:        // Utility
+        -:   53:        std::vector<T>& operator[](size_t index) { return data[index]; }
+        -:   54:        void insert(T element);
+        -:   55:        void resize(size_t newRowCount, size_t newColCount); // TODO
+        -:   56:
+        -:   57:        // Debug
+        -:   58:        void print();
+        -:   59:
+        -:   60:    private:
+        -:   61:        size_t rowCount, colCount;
+        -:   62:        std::vector<std::vector<T>> data;
+        -:   63:
+        -:   64:        std::vector<std::reference_wrapper<T>> colVector;
+        -:   65:
+        -:   66:        size_t currentInsertIPos = 0, currentInsertJPos = 0;
+        -:   67:
+        -:   68:        // Helper
+        -:   69:        void parseAllData(const Matrix& other, T (*func)(const T&, const T&));
+        -:   70:        double determinantLeibnitzHelper(Matrix& self);
+        -:   71:    };
+        -:   72:
+        -:   73:}
+        -:   74:
