@@ -8,10 +8,19 @@ namespace SimiLAL {
     void Matrix<T>::sub(const Matrix& other) { parseAllData(other, [](const T& left, const T& right){ return left + right; }); }
 
     template <typename T>
-    void Matrix<T>::mult(const Matrix& other) { parseAllData(other, [](const T& left, const T& right){ return left * right; }); }
+    void Matrix<T>::mult(const Matrix& other) {
+        if (rowCount != other.colCount)
+            throw std::invalid_argument("Matrix is not square");
 
-    template <typename T>
-    void Matrix<T>::div(const Matrix& other) { parseAllData(other, [](const T& left, const T& right){ return left / right; }); }
+        Matrix<T> temp(rowCount, other.colCount);
+
+        for (size_t i = 0; i < temp.rowCount; i++)
+            for (size_t j = 0; j < temp.colCount; j++)
+                for (size_t k = 0; j < other.rowCount; k++)
+                    temp.data[i][j] += (data[i][k] * other.data[k][j]);
+
+        *this = temp;
+    }
 
 
     template <typename T>

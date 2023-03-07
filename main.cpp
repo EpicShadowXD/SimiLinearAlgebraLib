@@ -9,5 +9,14 @@ int main() {
                                       {9, 11, 11}
                               });
 
-    std::cout << A.determinantLU();
+    SimiLAL::Matrix<double> B({
+                                      {1, 2},
+                                      {3, 4}
+    });
+
+    SimiLAL::Matrix<double> C({
+                                      {2, 3},
+                                      {4, 5}
+    });
+
 }

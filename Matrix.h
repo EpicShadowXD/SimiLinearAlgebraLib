@@ -30,7 +30,6 @@ namespace SimiLAL {
         void add(const Matrix& other);
         void sub(const Matrix& other);
         void mult(const Matrix& other);
-        void div(const Matrix& other);
 
         void add(T value);
         void sub(T value);
