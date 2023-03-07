@@ -32,12 +32,18 @@ namespace SimiLAL {
         void mult(const Matrix& other);
         void div(const Matrix& other);
 
+        void add(T value);
+        void sub(T value);
+        void mult(T value);
+        void div(T value);
+
         bool isSquare();
 
         Matrix transpose();
         Matrix submatrix(size_t iPos, size_t jPos);
 
         double determinantLeibnitz();
+        double determinantLU();
 
         // Iterators
         using RowIterator = std::vector<T>::iterator;
@@ -50,9 +56,9 @@ namespace SimiLAL {
         ColIterator colEnd(size_t index);
 
         // Utility
-        std::vector<T>& operator[](size_t index) { return data[index]; }
+        std::vector<T>& operator[](size_t index);
         void insert(T element);
-        void resize(size_t newRowCount, size_t newColCount); // TODO
+        void resize(size_t newRowCount, size_t newColCount);
 
         // Debug
         void print();
@@ -66,7 +72,9 @@ namespace SimiLAL {
         size_t currentInsertIPos = 0, currentInsertJPos = 0;
 
         // Helper
+        void parseAllData(T value, T (*func)(const T&));
         void parseAllData(const Matrix& other, T (*func)(const T&, const T&));
+
         double determinantLeibnitzHelper(Matrix& self);
     };
 

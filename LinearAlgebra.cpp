@@ -13,6 +13,7 @@ namespace SimiLAL {
     template <typename T>
     void Matrix<T>::div(const Matrix& other) { parseAllData(other, [](const T& left, const T& right){ return left / right; }); }
 
+
     template <typename T>
     bool Matrix<T>::isSquare() { return rowCount == colCount; }
 
@@ -46,14 +47,42 @@ namespace SimiLAL {
     }
 
     template <typename T>
+    double Matrix<T>::determinantLU() {
+        if (!this->isSquare())
+            throw std::invalid_argument("Matrix is not square");
+
+        size_t n = rowCount;
+        Matrix<T> LU = data;
+
+        // Gaussian elimination
+        size_t sign = 1;
+        for (size_t k = 0; k < n - 1; k++) {
+            for (size_t i = k + 1; i < n; i++) {
+                T factor = LU.data[i][k] / LU.data[k][k];
+
+                for (size_t j = k + 1; j < n; j++)
+                    LU.data[i][j] -= factor * LU.data[k][j];
+
+                LU.data[i][k] = factor;
+            }
+        }
+
+        // Compute determinant
+        T det = sign;
+        for (size_t i = 0; i < n; i++)
+            det *= LU.data[i][i];
+
+        return det;
+    }
+
+
+    template <typename T>
     double Matrix<T>::determinantLeibnitz() { return determinantLeibnitzHelper(*this); }
 
     template <typename T>
     double Matrix<T>::determinantLeibnitzHelper(Matrix& self) {
-        /*
         if (!this->isSquare())
             throw std::invalid_argument("Matrix is not square");
-        */
 
         if (self.rowCount == 2)
             return (self.data[0][0] * self.data[1][1]) - (self.data[0][1] * self.data[1][0]);

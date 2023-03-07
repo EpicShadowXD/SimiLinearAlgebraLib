@@ -15,7 +15,7 @@ namespace SimiLAL {
     }
     // </Debug>
 
-    // <Helper>
+    // <Utility>
     template <typename T>
     void SimiLAL::Matrix<T>::parseAllData(const Matrix<T> &other, T (*func)(const T &, const T &)) {
         for (size_t i = 0; i < rowCount; i++)
@@ -38,6 +38,16 @@ namespace SimiLAL {
         if (currentInsertIPos >= rowCount)
             currentInsertIPos = 0;
     }
+    template <typename T>
+    std::vector<T>& SimiLAL::Matrix<T>::operator[](size_t index) { return data[index]; }
 
-    // </Helper>
+    template <typename T>
+    void SimiLAL::Matrix<T>::resize(size_t newRowCount, size_t newColCount) {
+        rowCount = newRowCount;
+        colCount = newColCount;
+
+        data.resize(rowCount, std::vector<T>(colCount));
+    }
+
+    // </Utility>
 }

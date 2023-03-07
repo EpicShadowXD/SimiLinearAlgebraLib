@@ -3,12 +3,11 @@
 #include "Matrix.cpp"
 
 int main() {
-    SimiLAL::Matrix<double> B({
+    SimiLAL::Matrix<double> A({
                                       {5, 6,  7},
                                       {7, 8,  9},
                                       {9, 11, 11}
                               });
 
-    SimiLAL::Matrix<double> Bt = B.transpose();
-    Bt.print();
+    std::cout << A.determinantLU();
 }
