@@ -18,6 +18,9 @@ namespace SimiLAL {
     // <Utility>
     template <typename T>
     void SimiLAL::Matrix<T>::parseAllData(const Matrix<T> &other, T (*func)(const T &, const T &)) {
+        if (this->rowCount != other.rowCount || this->colCount != other.colCount)
+            throw std::invalid_argument("Matrices aren't of the same dimensions");
+
         for (size_t i = 0; i < rowCount; i++)
             for (size_t j = 0; j < colCount; j++)
                 data[i][j] = func(data[i][j], other.data[i][j]);

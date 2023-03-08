@@ -66,8 +66,10 @@ namespace SimiLAL {
         size_t rowCount, colCount;
         std::vector<std::vector<T>> data;
 
+        // Iterator
         std::vector<std::reference_wrapper<T>> colVector;
 
+        // Insert element; does NOT change matrix dimensions
         size_t currentInsertIPos = 0, currentInsertJPos = 0;
 
         // Helper

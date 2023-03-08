@@ -2,10 +2,14 @@
 
 namespace SimiLAL {
     template <typename T>
-    void Matrix<T>::add(const Matrix& other) { parseAllData(other, [](const T& left, const T& right){ return left + right; }); }
+    void Matrix<T>::add(const Matrix& other) {
+        parseAllData(other, [](const T& left, const T& right){ return left + right; });
+    }
 
     template <typename T>
-    void Matrix<T>::sub(const Matrix& other) { parseAllData(other, [](const T& left, const T& right){ return left + right; }); }
+    void Matrix<T>::sub(const Matrix& other) {
+        parseAllData(other, [](const T& left, const T& right){ return left + right; });
+    }
 
     template <typename T>
     void Matrix<T>::mult(const Matrix& other) {
